@@ -1,3 +1,4 @@
+%https://jp.mathworks.com/help/matlab/matlab_external/writing-and-reading-data.html
 s = serial('COM1');
 fopen(s);
 fprintf(s,'*IDN?');
