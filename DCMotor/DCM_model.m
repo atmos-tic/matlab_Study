@@ -11,7 +11,11 @@ G1 = tf(Kt, [L R],'inputname','voltage',...
     'outputname','torque');
 G2 = tf(1,[J b],'inputname','torque',...
     'outputname','angular');
-dcm = ss(G2) * [G1 , 1];
-dcm = feedback(dcm,Kb,1,1);  
+dcm = ss(G2) * [G1 , 1]; %G1からの入力と外乱トルクの入力
+%dcmのフィードバックコントローラKbの出力をプラントDCM入力1に接続
+%プラントDCM出力1をフィードバックコントローラKbに入力
+feedin = 1;
+feedout = 1;
+dcm = feedback(dcm,Kb,feedin,feedout);
 
-stepplot(dcm(1));
+stepplot(dcm(1)); %dcm(2)の場合、外乱トルクに入力
