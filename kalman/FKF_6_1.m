@@ -54,7 +54,7 @@ function [xhat_new,P_new, G] = kf(A,B,Bu,C,Q,R,u,y,xhat,P)
  xhat = xhat(:); u = u(:); y = y(:);
 %事前推定値
  xhatm = A*xhat + Bu*u; %状態
- Pm = A*P*A' + B*Q*B;   %誤差共分散
+ Pm = A*P*A' + B*Q*B';   %誤差共分散
 %カルマンゲイン行列
  G = Pm*C/(C'*Pm*C+R);
 % 事後推定値
